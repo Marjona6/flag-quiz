@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--
+        Mobile browsers like Fennec render pages in a virtual "window" (the viewport), usually wider than the screen, so they don't need to squeeze every page layout into a tiny window (which would break many non-mobile-optimized sites). Users can pan and zoom to see different areas of the page.
+        Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Flag Identification Quiz</title>
+    <meta name="description" content="Flag identification quiz">
+    <meta name="author" content="Meryem Yanar">
+    <link rel="stylesheet" href="main.css" type="text/css">
+
+    <!-- add support for browsers with special needs-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <header>
+        <h2>Flag Identification Quiz: Test Your Knowledge of the World's Flags!</h2>
+        <!--
+        <img src="logo.jpg">
+
+        <nav>
+            <ul>
+                <li>Home</li>
+
+                <li>About me</li>
+
+                <li>Contact</li>
+            </ul>
+        </nav>
+        -->
+    </header>
+
+    <section id="start-page" class="box">
+        <h1>Flag Identification Quiz</h1>
+
+        <p>We all know what our own country's flag looks like, but how many other flags can you accurately identify?</p>
+
+        <p>Being able to recognize flags can help you avoid some awkward situations, such as when US Vice President Mike Pence <a href="http://thehill.com/blogs/in-the-know/in-the-know/321152-pence-mixes-up-nicaraguan-and-israeli-flags-in-tweet">tweeted his support for Israel</a> using a Nicaraguan flag emoji.</p> 
+
+        <p>Take this quiz to test your knowledge of flags around the world!</p>
+
+    </section>
+
+    <section id="question-page" class="box">
+        <h2>Question 1 out of 10</h2>
+
+        <p>Which country's flag is this, featuring the flag of the United Kingdom as part of its design?</p>
+
+        <div class="question-flag" style="background-image: url('img/uk-flag.png')"></div>
+
+        <ul>
+            <li><input class="option" type="radio" value="0" name="option">North Korea</li>
+            <li><input class="option" type="radio" value="1" name="option">New Zealand</li>
+            <li><input class="option" type="radio" value="2" name="option">The United Kingdom</li>
+            <li><input class="option" type="radio" value="3" name="option">Heard and McDonald Islands</li>
+        </ul>
+
+        <h3>Sorry, that's not it! That's actually the flag of the Republic of Korea. The flag incorporates Taoist and Buddhist symbols.</h3>
+
+        <h4>So far, you scored 4 out of 10</h4>
+
+    </section>
+
+    <section id="end-page" class="box">
+        <h2>All done!</h2>
+
+        <p>Thanks for taking the flag identification quiz! Your final score is [TBD].</p>
+
+        <p>Click here to take the quiz again!</p>
+
+        <div><img src="some-image3.jpg"></div>
+    </section>
+
+    <footer>
+        Copyright notice
+
+        <ul>
+            <li>Footer link 1</li>
+
+            <li>Footer link 2</li>
+
+            <li>Footer link 3</li>
+        </ul>
+
+        <div><img src="footer-logo.jpg"></div>
+    </footer>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="app.js" type="text/javascript">
+    </script>
+</body>
+
+</html>

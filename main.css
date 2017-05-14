@@ -1,0 +1,42 @@
+
+html {
+	background: rgba(0, 0, 0, 0) url(img/flags.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+body {
+	margin: 2rem;
+}
+
+section {
+    background-image: url("img/transparent.jpg");
+    border-radius: 0.5rem;
+    padding: 2rem;
+    width: 80%;
+    min-width: 22rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+/*
+.box {
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	border-radius: 6px;
+	padding: 2rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+*/
+
+.question-flag {
+	height: 15rem;
+	width: 80%;
+	margin: 1rem auto;
+	background-size: 100% 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	/* this doesn't work? */
+}
