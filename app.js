@@ -100,20 +100,42 @@ var questionsArray = [
 var totalQuestionsAnswered = 0;
 // initialize a variable to hold the count of questions answered correctly
 var totalQuestionsCorrect = 0;
+// initialize a variable to indicate the number of the question we are currently on
+var currentQuestion=0;
 
 // Functions
 
 // ******** START PAGE **********
+// Toggle (show/hide) #start-page section
+function toggleStartPage() {
+
+}
+// Toggle (show/hide) #question-page section
+function toggleQuestionPage() {
+	alert.("I have activated the toggleQuestionPage() function");
+}
+// Toggle (show/hide) #end-page section
+function toggleEndPage() {
+
+}
+
 // Step 1: Load the page; show only the first section (#start-page)
 function loadPage() {
 	// show #start-page section
+	// (should default to showing #start-page section)
 	// hide #question-page and #end-page sections
+	toggleQuestionPage();
+	toggleEndPage();
 }
 
 // Step 2: When user clicks "Let's get started!" button, hide #start-page section and show #question-page section
 // ... with first question loaded
 function goToQuestionPage() {
-
+	$("#get-started").click(function() {
+	// on click #get-started, toggle #start-page and #question-page
+	toggleStartPage();
+	toggleQuestionPage();	
+	})
 }
 // *********************************
 
@@ -121,7 +143,25 @@ function goToQuestionPage() {
 // This function displays the next question object in the array questionsArray; a later function...
 // ...will call this function in a loop until all questions have been iterated through.
 function displayQuestion() {
-
+	// testing
+	alert.("I have activated the displayQuestion() function");
+	var htmlOutput = "";
+	htmlOutput += "<h2>Question " + "1" + " of" + " 10</h2>";
+	htmlOutput += "<p>" + questionsArray[currentQuestion].questionText + "</p>"
+					+ "<div class=\"question-flag\" style=\"background-image: url('"
+					+ questionsArray[currentQuestion].questionImage + "')\"></div>";
+	htmlOutput += "<div class=\"container\">";
+	htmlOutput += "<ul>";
+   	// loop to iterate through all the items in questionsArray[i].questionChoices
+   	for (var j=0; j<questionsArray[currentQuestion].questionChoices; j++) {
+   		htmlOutput += "<li>";
+   		htmlOutput += "<input class=\"option\" type=\"radio\" value=\"0\" name=\"option\">";
+   		htmlOutput += questionsArray[currentQuestion].questionChoices[j];
+   		htmlOutput += "</li>";
+   	}
+   	htmlOutput += "</ul>";
+    htmlOutput += "</div>";
+    htmlOutput += "<input type=\"submit\" value=\"That's my final answer!\">";
 }
 
 // This function handles the user clicking the "That's my final answer!" button (answering a question)
@@ -131,16 +171,16 @@ function handleAnswerSubmit() {
 }
 
 // Step 3: When user selects a response and clicks "That's my final answer!" button, #answer-feedback displays...
-// ... showing whether response is right or wrong.
-function displayAnswerFeedback() {
-
-}
-
 // [To determine if response is correct, compare the user-input value to the value of questionCorrectChoice]
 // Not sure if this needs to be its own function
 function gradeResponse() {
 
 }
+// ... showing whether response is right or wrong.
+function displayAnswerFeedback() {
+	// 
+}
+
 // Also, #scorecard section updates, adding 1 to number-attempted and only adding 1 to number-correct if the response
 // ... is correct.
 function updateScorecard() {
@@ -197,8 +237,9 @@ function playAgain() {
 
 // code below is not working
 $(document).ready(function() {
-	event.preventDefault();
+	loadPage();
 	$(".button").click(function() {
-		$("#start-page").toggle();
+		event.preventDefault();
+		$("#start-page").hide();
 	});
 });
