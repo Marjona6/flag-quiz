@@ -2,11 +2,49 @@
 html {
 	background: rgba(0, 0, 0, 0) url(img/flags.jpg) no-repeat center center fixed;
     background-size: cover;
+    font-family: 'Oswald', sans-serif;
 }
 body {
 	margin: 2rem;
 }
 
+h1 {
+	color: darkred;
+	font-family: 'Lato', sans-serif;
+	font-size: 2.5rem;
+	text-shadow: 0.1rem 0.1rem 0.2rem white;
+	text-align: center;
+}
+
+h2 {
+	color: gold;
+	font-family: 'Lato', sans-serif;
+	font-size: 1.75rem;
+}
+
+/* link styling */
+a:link {
+	color: yellow;
+}
+a:visited {
+	color: lightgray;
+}
+a:hover {
+	color: lightblue;
+}
+a:active {
+	color: yellow;
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+p {
+	font-size: 1.5rem;
+}
 section {
     background-image: url("img/transparent.jpg");
     border-radius: 0.5rem;
@@ -18,25 +56,49 @@ section {
     margin-right: auto;
     color: white;
 }
-/*
-.box {
-	background-color: black;
-	color: white;
-	border: 1px solid black;
-	border-radius: 6px;
-	padding: 2rem;
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+
+#start-page p {
+	text-align: center;
 }
-*/
+
+/* styling for answer choices (ul) */
+#question-page ul {
+	list-style-type: none;
+	font-size: 1.25rem;
+	text-align: left;
+}
+/* container to contain answer choices */
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 20rem;
+	max-width: 24rem;
+}
+
+fieldset {
+	border: none;
+}
+
+#end-page {
+	text-align: center;
+}
 
 .question-flag {
 	height: 15rem;
 	width: 80%;
+	min-width: 22rem;
+	max-width: 30rem;
 	margin: 1rem auto;
 	background-size: 100% 100%;
 	background-position: center center;
 	background-repeat: no-repeat;
+}
 
-	/* this doesn't work? */
+#scorecard {
+	font-size: 1rem;
+	text-align: center;
+}
+
+footer p {
+	font-size: 0.75rem;
 }
