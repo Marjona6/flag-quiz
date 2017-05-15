@@ -96,14 +96,109 @@ var questionsArray = [
 	}
     ];
 
+// initialize a variable to hold the count of questions answered
+var totalQuestionsAnswered = 0;
+// initialize a variable to hold the count of questions answered correctly
+var totalQuestionsCorrect = 0;
+
 // Functions
 
+// ******** START PAGE **********
 // Step 1: Load the page; show only the first section (#start-page)
+function loadPage() {
+	// show #start-page section
+	// hide #question-page and #end-page sections
+}
 
-// Step 2: 
+// Step 2: When user clicks "Let's get started!" button, hide #start-page section and show #question-page section
+// ... with first question loaded
+function goToQuestionPage() {
+
+}
+// *********************************
+
+// ******** QUESTION PAGE **********
+// This function displays the next question object in the array questionsArray; a later function...
+// ...will call this function in a loop until all questions have been iterated through.
+function displayQuestion() {
+
+}
+
+// This function handles the user clicking the "That's my final answer!" button (answering a question)
+// This one is also called in the loop later on
+function handleAnswerSubmit() {
+
+}
+
+// Step 3: When user selects a response and clicks "That's my final answer!" button, #answer-feedback displays...
+// ... showing whether response is right or wrong.
+function displayAnswerFeedback() {
+
+}
+
+// [To determine if response is correct, compare the user-input value to the value of questionCorrectChoice]
+// Not sure if this needs to be its own function
+function gradeResponse() {
+
+}
+// Also, #scorecard section updates, adding 1 to number-attempted and only adding 1 to number-correct if the response
+// ... is correct.
+function updateScorecard() {
+
+}
+
+// Also, "That's my final answer!" button is hidden to prevent user from attempting same question again;
+function hideAnswerButton() {
+
+}
+
+// Also, a new button appears under #answer-feedback section: "Next question"
+function showNextQuestionButton() {
+
+}
+// *********************************
+
+// Step 4: #question-page section populates with next question. Process is repeated until last question
+// This function calls the functions in the QUESTIONS PAGE section above and iterates through all question
+// ... objects in the questionsArray array
+function doQuestions() {
+
+}
+
+// Step 5: On last question, once user has submitted their answer, a different button appears: "Show my results"
+function showDisplayResultsButton() {
+
+}
+
+// Step 6: When user clicks "Show my results" button, #question-page section is hidden and #end-page section is shown.
+function hideQuestionPage() {
+
+}
+function showEndPage() {
+
+}
+
+// #end-page section displays calculated final-score
+function displayFinalScore() {
+
+}
+
+// Step 7: User has the option to click "Play again" button to re-load the page from the beginning
+function showPlayAgainButton() {
+
+}
+
+// reloads the page and clears everything out so the user can take the quiz again
+function playAgain() {
+
+}
 
 // SECTION TWO: Triggers go here
 
-fucntion displayQuestions(currentQuestion) {
-	
-}
+// code below is not working
+$(document).ready(function() {
+	event.preventDefault();
+	$(".button").click(function() {
+		$("#start-page").toggle();
+	});
+});

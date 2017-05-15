@@ -34,8 +34,8 @@
         <p>Being able to recognize flags can help you avoid some awkward situations, such as when US Vice President Mike Pence <a href="http://thehill.com/blogs/in-the-know/in-the-know/321152-pence-mixes-up-nicaraguan-and-israeli-flags-in-tweet">tweeted his support for Israel</a> using a Nicaraguan flag emoji.</p> 
 
         <p>Take this quiz to test your knowledge of flags around the world!</p>
-        <form action="placeholder.com" method="get"> 
-            <input type="submit" value="Let's get started!">
+        <form action="placeholder.com" method="post"> 
+            <input class="button" type="submit" value="Let's get started!">
         </form>
 
     </section>
@@ -61,18 +61,30 @@
         </form>
 
 
-        <p>Sorry, that's not it! That's actually the flag of the Republic of Korea. The flag incorporates Taoist and Buddhist symbols.</p>
+        <p id="answer-feedback">Sorry, that's not it! That's actually the flag of the Republic of Korea. The flag incorporates Taoist and Buddhist symbols.</p>
 
-        <p id="scorecard">So far, you scored 4 out of 10</p>
+        <form action="next.com" method="post">
+            <input type="submit" value="Next question">
+        </form>
+
+         <form action="show-results.com" method="post">
+            <input type="submit" value="Show my results">
+        </form>
+
+        <p id="scorecard">Current score: [number-correct] out of [number-attempted]</p>
 
     </section>
 
     <section id="end-page">
         <h2>All done!</h2>
 
-        <p>Thanks for taking the flag identification quiz! Your final score is [TBD].</p>
+        <p>Thanks for taking the flag identification quiz! Your final score is [number-correct].</p>
 
-        <p>Click here to take the quiz again!</p>
+        <p>Click the button below to take the quiz again!</p>
+
+        <form action="again.com" method="post">
+            <input type="submit" value="Play again">
+        </form>
 
         <div><img src="img/globe-face.jpg" class="question-flag"></div>
     </section>
