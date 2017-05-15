@@ -43,13 +43,14 @@
     <section id="question-page">
         <form>
             <fieldset>
-                <h2>Question 1 of 10</h2>
+                <h2 class="display-question-number"></h2>
 
-                <p>Which country's flag is this, featuring the flag of the United Kingdom as part of its design?</p>
+                <p class="display-question-text"></p>
 
-                <div class="question-flag" style="background-image: url('img/kenya.png')"></div>
+                <div class="display-question-image"></div>
+
                 <div class="container">
-                <ul>
+                <ul class="display-question-choices">
                     <li><input class="option" type="radio" value="0" name="option">North Korea</li>
                     <li><input class="option" type="radio" value="1" name="option">New Zealand</li>
                     <li><input class="option" type="radio" value="2" name="option">The United Kingdom</li>
@@ -63,13 +64,9 @@
 
         <p id="answer-feedback">Sorry, that's not it! That's actually the flag of the Republic of Korea. The flag incorporates Taoist and Buddhist symbols.</p>
 
-        <form action="next.com" method="post">
-            <input type="submit" value="Next question">
-        </form>
+            <input id="next-question" type="submit" value="Next question">
 
-         <form action="show-results.com" method="post">
-            <input type="submit" value="Show my results">
-        </form>
+            <input id="show-results" type="submit" value="Show my results">
 
         <p id="scorecard">Current score: [number-correct] out of [number-attempted]</p>
 
@@ -82,9 +79,7 @@
 
         <p>Click the button below to take the quiz again!</p>
 
-        <form action="again.com" method="post">
-            <input type="submit" value="Play again">
-        </form>
+        <input id="play-again" type="submit" value="Play again">
 
         <div><img src="img/globe-face.jpg" class="final-image"></div>
     </section>
@@ -92,7 +87,10 @@
     <footer>
         <p>&#xa9; 2017 Meryem Yanar</p>
     </footer>
-    <script src="jquery-3.2.1.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
     <script src="app.js" type="text/javascript">
     </script>
 </body>
