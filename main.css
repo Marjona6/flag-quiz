@@ -36,12 +36,6 @@ a:active {
 	color: yellow;
 }
 
-form {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
 p {
 	font-size: 1.5rem;
 }
@@ -55,6 +49,13 @@ section {
     margin-left: auto;
     margin-right: auto;
     color: white;
+}
+
+/* styling for buttons--does not work because I need to target the parent container, not the elements directly :( */
+#get-started, #final-answer-button, #next-question, #show-results, #play-again {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 #start-page p {

@@ -109,26 +109,19 @@ var currentQuestion=0;
 // Functions
 
 // ******** START PAGE **********
-// Toggle (show/hide) #start-page section
-function toggleStartPage() {
-
-}
-// Toggle (show/hide) #question-page section
-function toggleQuestionPage() {
-	alert("I have activated the toggleQuestionPage() function");
-}
-// Toggle (show/hide) #end-page section
-function toggleEndPage() {
-
-}
 
 // Step 1: Load the page; show only the first section (#start-page)
 function loadPage() {
 	// show #start-page section
 	// (should default to showing #start-page section)
 	// hide #question-page and #end-page sections
-	toggleQuestionPage();
-	toggleEndPage();
+	$('#question-page').hide();
+	$('#end-page').hide();
+	$('#next-question').hide();
+	$('#show-results').hide();
+	$('#answer-feedback').hide();
+	$('#start-page').show();
+
 }
 
 // Step 2: When user clicks "Let's get started!" button, hide #start-page section and show #question-page section
@@ -154,38 +147,73 @@ function displayQuestion(currentQuestion) {
 	
 $(".display-question-image").html("<div class='question-flag' style='background-image: url(" + questionsArray[currentQuestion].questionImage +")'></div>");
 	
-	
-	
 	var htmlOutput = "";
    	// loop to iterate through all the items in questionsArray[i].questionChoices
-   	for (var j=0; j<questionsArray[currentQuestion].questionChoices; j++) {
+   	for (var j=0; j<questionsArray[currentQuestion].questionChoices.length; j++) {
    		htmlOutput += "<li>";
-   		htmlOutput += "<input class=\"option\" type=\"radio\" value=\"0\" name=\"option\">";
+   		htmlOutput += "<input class=\"option\" type=\"radio\" value=\"" + j + "\" name=\"option\">";
    		htmlOutput += questionsArray[currentQuestion].questionChoices[j];
    		htmlOutput += "</li>";
    	}
    	$(".display-question-choices").html(htmlOutput);
-
-    htmlOutput += "</div>";
-    htmlOutput += "<input type=\"submit\" value=\"That's my final answer!\">";
 }
 
 // This function handles the user clicking the "That's my final answer!" button (answering a question)
 // This one is also called in the loop later on
+// how to bring in userInput here?
 function handleAnswerSubmit() {
+	$('#final-answer-button').click(function() {
+		// prevent page refresh
+		event.preventDefault();
 
+		// testing--works!
+		// alert("Activated the handleAnswerSubmit() function successfully");
+
+		// hide final-answer-button
+		$('#final-answer-button').hide();
+
+		// show next-question-button
+		$('#next-question').show();
+
+		// gradeResponse(user input)
+		gradeResponse();
+
+		// updateScorecard(user input)
+
+		// displayAnswerFeedback(user input)
+		displayAnswerFeedback();
+
+
+	})
 }
 
 // Step 3: When user selects a response and clicks "That's my final answer!" button, #answer-feedback displays...
 // [To determine if response is correct, compare the user-input value to the value of questionCorrectChoice]
 // Not sure if this needs to be its own function
 function gradeResponse() {
+	// testing--works!
+	// alert("I have activated the gradeResponse() function successfully");
+	// compare userInput to questionsArray[currentQuestion].questionCorrectChoice
+
+	// put the selected value for radio button into a variable
+	var userInput = document.querySelector('input[name="option"]:checked').value;
+
+	// testing--works!
+	// alert('Value of variable userInput is ' + userInput);
+
+	// compare userInput to value of questionsArray[currentQuestion].questionCorrectChoice
+	// if equals, do sth
+	// if not, do sth else
 
 }
 // ... showing whether response is right or wrong.
 function displayAnswerFeedback() {
-	// 
+	// testing--works!
+	// alert("I have activated displayAnswerFeedback() successfully");
 }
+
+		// display next question
+		displayQuestion(currentQuestion+1);
 
 // Also, #scorecard section updates, adding 1 to number-attempted and only adding 1 to number-correct if the response
 // ... is correct.
@@ -244,9 +272,7 @@ function playAgain() {
 // code below is not working
 $(document).ready(function() {
 	//when the page loads
-	$('#question-page').hide();
-	$('#end-page').hide();
-	$('#start-page').show();
+	loadPage();
 
 	//get started button trigger
 	$("#get-started").click(function() {
@@ -257,6 +283,10 @@ $(document).ready(function() {
 		// displays first question dynamically
 		displayQuestion(currentQuestion);
 	});
+
+	// handle answer submit trigger
+	handleAnswerSubmit();
+	
 
 	//show results button trigger
 	$("#show-results").click(function() {
