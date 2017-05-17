@@ -247,6 +247,16 @@ function doQuestions() {
 		
 }
 
+// next question button functionality
+function loadNextQuestion() {
+	currentQuestion++;
+		event.preventDefault();
+		$('#next-question').hide();
+		$('#answer-feedback').hide();
+		$('#final-answer-button').show();
+	displayQuestion(currentQuestion);
+}
+
 // #end-page section displays calculated final-score
 function displayFinalScore() {
 
@@ -287,7 +297,9 @@ $(document).ready(function() {
 	});
 
 	// next-question button trigger
-
+	$("#next-question").click(function() {
+		loadNextQuestion();
+	});
 
 	// handle answer submit trigger
 	//handleAnswerSubmit();
