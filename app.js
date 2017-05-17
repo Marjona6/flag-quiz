@@ -11,7 +11,7 @@ var questionsArray = [
         questionChoices: ['England', 'France', 'The United Kingdom', 'Australia'],
         questionCorrectChoice: 2,
         correctDetails: "That's right, that's the flag of the United Kingdom! It includes England, Scotland, Wales, and Northern Ireland.",
-		incorrectDetails: "That's the flag of the United Kingdom, which includes England, Scotland, Wales, and Northern Ireland."
+		incorrectDetails: "Wrong! That's the flag of the United Kingdom, which includes England, Scotland, Wales, and Northern Ireland."
     },
 //Question 2
 	{
@@ -126,29 +126,29 @@ function loadPage() {
 
 // Step 2: When user clicks "Let's get started!" button, hide #start-page section and show #question-page section
 // ... with first question loaded
-function goToQuestionPage() {
-	$("#get-started").click(function() {
+// NOT USING THIS CURRENTLY
+//function goToQuestionPage() {
+/*	$("#get-started").click(function() {
 	// on click #get-started, toggle #start-page and #question-page
 	toggleStartPage();
 	toggleQuestionPage();	
-	})
-}
+	})*/
+//}
 // *********************************
 
 // ******** QUESTION PAGE **********
 // This function displays the next question object in the array questionsArray; a later function...
 // ...will call this function in a loop until all questions have been iterated through.
 function displayQuestion(currentQuestion) {
-	// testing--works!
-	//alert("I have activated the displayQuestion() function");
-
+	// "Question x of y"
 	$(".display-question-number").text("Question " + (currentQuestion +1) + " of " + totalQuestions);
+	// Display question text
 	$(".display-question-text").text(questionsArray[currentQuestion].questionText);
-	
-$(".display-question-image").html("<div class='question-flag' style='background-image: url(" + questionsArray[currentQuestion].questionImage +")'></div>");
-	
-	var htmlOutput = "";
-   	// loop to iterate through all the items in questionsArray[i].questionChoices
+	// Display question image
+	$(".display-question-image").html("<div class='question-flag' style='background-image: url(" + questionsArray[currentQuestion].questionImage +")'></div>");
+	// Display question choices
+   	// loop to iterate through and display all the possible answers with radio buttons
+   	var htmlOutput = "";
    	for (var j=0; j<questionsArray[currentQuestion].questionChoices.length; j++) {
    		htmlOutput += "<li>";
    		htmlOutput += "<input class=\"option\" type=\"radio\" value=\"" + j + "\" name=\"option\">";
@@ -156,6 +156,46 @@ $(".display-question-image").html("<div class='question-flag' style='background-
    		htmlOutput += "</li>";
    	}
    	$(".display-question-choices").html(htmlOutput);
+}
+
+
+// Step 3: When user selects a response and clicks "That's my final answer!" button, #answer-feedback displays...
+// [To determine if response is correct, compare the user-input value to the value of questionCorrectChoice]
+function gradeResponse() {
+	// compare userInput to questionsArray[currentQuestion].questionCorrectChoice
+	// put the selected value for radio button into a variable
+	var userInput = document.querySelector('input[name="option"]:checked').value; // why does this no longer work?
+
+	// compare userInput to value of questionsArray[currentQuestion].questionCorrectChoice
+	if (userInput == questionsArray[currentQuestion].questionCorrectChoice) { //computer cannot read questionCorrectChoice? Why?
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+// Display answer feedback
+function displayAnswerFeedback() {
+	if (gradeResponse() == true) {
+		$("#answer-feedback").text(questionsArray[currentQuestion].correctDetails);
+	}
+	else {
+		$("#answer-feedback").text(questionsArray[currentQuestion].incorrectDetails);
+	}
+	$('#answer-feedback').show();
+}
+
+// Also, #scorecard section updates, adding 1 to number-attempted and only adding 1 to number-correct if the response
+// ... is correct.
+function updateScorecard() {
+	totalQuestionsAnswered++;
+	if (gradeResponse() == true) {
+		totalQuestionsCorrect++;
+	}
+}
+
+function displayScorecard() {
+	$("#scorecard").text("Current score: " + totalQuestionsCorrect + " out of " + totalQuestionsAnswered);
 }
 
 // This function handles the user clicking the "That's my final answer!" button (answering a question)
@@ -166,9 +206,6 @@ function handleAnswerSubmit() {
 		// prevent page refresh
 		event.preventDefault();
 
-		// testing--works!
-		// alert("Activated the handleAnswerSubmit() function successfully");
-
 		// hide final-answer-button
 		$('#final-answer-button').hide();
 
@@ -178,78 +215,36 @@ function handleAnswerSubmit() {
 		// gradeResponse(user input)
 		gradeResponse();
 
-		// updateScorecard(user input)
-
 		// displayAnswerFeedback(user input)
 		displayAnswerFeedback();
 
+		// updateScorecard(user input)
+		updateScorecard();
 
+		// display updated scorecard
+		displayScorecard();
 	})
-}
-
-// Step 3: When user selects a response and clicks "That's my final answer!" button, #answer-feedback displays...
-// [To determine if response is correct, compare the user-input value to the value of questionCorrectChoice]
-// Not sure if this needs to be its own function
-function gradeResponse() {
-	// testing--works!
-	// alert("I have activated the gradeResponse() function successfully");
-	// compare userInput to questionsArray[currentQuestion].questionCorrectChoice
-
-	// put the selected value for radio button into a variable
-	var userInput = document.querySelector('input[name="option"]:checked').value;
-
-	// testing--works!
-	// alert('Value of variable userInput is ' + userInput);
-
-	// compare userInput to value of questionsArray[currentQuestion].questionCorrectChoice
-	// if equals, do sth
-	// if not, do sth else
-
-}
-// ... showing whether response is right or wrong.
-function displayAnswerFeedback() {
-	// testing--works!
-	// alert("I have activated displayAnswerFeedback() successfully");
-}
-
-		// display next question
-		displayQuestion(currentQuestion+1);
-
-// Also, #scorecard section updates, adding 1 to number-attempted and only adding 1 to number-correct if the response
-// ... is correct.
-function updateScorecard() {
-
-}
-
-// Also, "That's my final answer!" button is hidden to prevent user from attempting same question again;
-function hideAnswerButton() {
-
-}
-
-// Also, a new button appears under #answer-feedback section: "Next question"
-function showNextQuestionButton() {
-
 }
 // *********************************
 
-// Step 4: #question-page section populates with next question. Process is repeated until last question
+// Step 4: #question-page section populates with next question.
+
+// Process is repeated until last question
 // This function calls the functions in the QUESTIONS PAGE section above and iterates through all question
 // ... objects in the questionsArray array
 function doQuestions() {
-
-}
-
-// Step 5: On last question, once user has submitted their answer, a different button appears: "Show my results"
-function showDisplayResultsButton() {
-
-}
-
-// Step 6: When user clicks "Show my results" button, #question-page section is hidden and #end-page section is shown.
-function hideQuestionPage() {
-
-}
-function showEndPage() {
-
+		//for (var i=0; i<questionsArray.length; i++) {
+			displayQuestion(currentQuestion);
+			handleAnswerSubmit();
+			//gradeResponse();
+			//displayAnswerFeedback(); // not working
+			//updateScorecard();
+			//currentQuestion++;
+			//alert(currentQuestion);
+		//}
+	// on last question, do not show next-question button
+	// instead, show "show my score" button
+		
 }
 
 // #end-page section displays calculated final-score
@@ -264,6 +259,9 @@ function showPlayAgainButton() {
 
 // reloads the page and clears everything out so the user can take the quiz again
 function playAgain() {
+	// show start-page
+	// hide everything else
+	// reset all variables to 0
 
 }
 
@@ -272,6 +270,8 @@ function playAgain() {
 // code below is not working
 $(document).ready(function() {
 	//when the page loads
+	// set currentQuestion to 0
+	currentQuestion = 0;
 	loadPage();
 
 	//get started button trigger
@@ -280,12 +280,17 @@ $(document).ready(function() {
 		$('#start-page').hide();
 		$('#end-page').hide();
 		$('#question-page').show();
+		displayScorecard();
 		// displays first question dynamically
-		displayQuestion(currentQuestion);
+		//displayQuestion(currentQuestion);
+		doQuestions();
 	});
 
+	// next-question button trigger
+
+
 	// handle answer submit trigger
-	handleAnswerSubmit();
+	//handleAnswerSubmit();
 	
 
 	//show results button trigger
@@ -304,10 +309,4 @@ $(document).ready(function() {
 		$('#end-page').hide();
 		$('#start-page').show();
 	});	
-
-	//loadPage();
-	//$(".button").click(function() {
-	//	event.preventDefault();
-	//	$("#start-page").hide();
-	//});
 });
