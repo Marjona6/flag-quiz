@@ -257,23 +257,25 @@ function loadNextQuestion() {
 	displayQuestion(currentQuestion);
 }
 
-// #end-page section displays calculated final-score
-function displayFinalScore() {
-
+// handle the final question and transition to end page
+function handleFinalQuestion() {
+	// if it is the last question:
+	if (currentQuestion + 1 == questionsArray.length) {
+		event.preventDefault();
+		$('#next-question').hide();
+		$('#answer-feedback').hide();
+		$('#final-answer-button').hide();
+		$('#show-results').show();
+	}
 }
 
-// Step 7: User has the option to click "Play again" button to re-load the page from the beginning
-function showPlayAgainButton() {
-
+function loadEndPage() {
+	// testing
+	alert("Loading end page");
+	event.preventDefault();
+	$('#end-page-final-score').text("Thanks for taking the flag identification quiz! Your final score is " + totalQuestionsCorrect + " out of " + totalQuestionsAnswered);
 }
 
-// reloads the page and clears everything out so the user can take the quiz again
-function playAgain() {
-	// show start-page
-	// hide everything else
-	// reset all variables to 0
-
-}
 
 // SECTION TWO: Triggers go here
 
@@ -299,6 +301,7 @@ $(document).ready(function() {
 	// next-question button trigger
 	$("#next-question").click(function() {
 		loadNextQuestion();
+		handleFinalQuestion();
 	});
 
 	// handle answer submit trigger
@@ -310,15 +313,21 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('#question-page').hide();
 		$('#start-page').hide();
+		loadEndPage();
 		$('#end-page').show();
-	});	
+	});
 
 	//play again button trigger
 	$("#play-again").click(function() {
-		// TO DO: Reset all the variables to 0
 		event.preventDefault();
+		currentQuestion = 0;
+		totalQuestionsAnswered = 0;
+		totalQuestionsCorrect = 0;
 		$('#question-page').hide();
 		$('#end-page').hide();
 		$('#start-page').show();
 	});	
 });
+
+// TO DO: Clean up this ugly code
+// TO DO: Make all questions "required"
