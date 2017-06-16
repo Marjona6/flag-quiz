@@ -98,7 +98,6 @@ var questionsArray = [
 
 // initialize a variable to hold the count of questions answered
 var totalQuestions = questionsArray.length;
-
 // initialize a variable to hold the count of questions answered
 var totalQuestionsAnswered = 0;
 // initialize a variable to hold the count of questions answered correctly
@@ -108,26 +107,6 @@ var currentQuestion = 0;
 
 // Functions
 
-// ******** START PAGE **********
-
-// Step 1: Load the page; show only the first section (#start-page)
-/*function loadPage() {
-	// show #start-page section
-	// (should default to showing #start-page section)
-	// hide #question-page and #end-page sections
-	$('#question-page').hide();
-	$('#end-page').hide();
-	$('#next-question').hide();
-	$('#show-results').hide();
-	$('#answer-feedback').hide();
-	$('#start-page').show();
-
-}*/
-// *********************************
-
-// ******** QUESTION PAGE **********
-// This function displays the next question object in the array questionsArray; a later function...
-// ...will call this function in a loop until all questions have been iterated through.
 function displayQuestion(currentQuestion) {
     // "Question x of y"
     $(".display-question-number").text("Question " + (currentQuestion + 1) + " of " + totalQuestions);
@@ -140,46 +119,15 @@ function displayQuestion(currentQuestion) {
     var htmlOutput = "";
     for (var j = 0; j < questionsArray[currentQuestion].questionChoices.length; j++) {
         htmlOutput += "<li>";
-        htmlOutput += "<input class=\"option\" type=\"radio\" value=\"" + j + "\" name=\"option\">";
+        htmlOutput += "<input class=\"option\" type=\"radio\" value=\"" + j + "\" name=\"option\" required='required'>";
         htmlOutput += questionsArray[currentQuestion].questionChoices[j];
         htmlOutput += "</li>";
     }
     $(".display-question-choices").html(htmlOutput);
-
-    // GRADE RESPONSE
-    // compare userInput to questionsArray[currentQuestion].questionCorrectChoice
-    // put the selected value for radio button into a variable
-    /*	var userInput = document.querySelector('input[name="option"]:checked').value;
-
-    	totalQuestionsAnswered++;
-    	// compare userInput to value of questionsArray[currentQuestion].questionCorrectChoice
-    	if (userInput == questionsArray[currentQuestion].questionCorrectChoice) { //computer cannot read questionCorrectChoice? Why?
-    		totalQuestionsCorrect++;
-    		$("#answer-feedback").text(questionsArray[currentQuestion].correctDetails);
-    	}
-    	else {
-    		$("#answer-feedback").text(questionsArray[currentQuestion].incorrectDetails);
-    	}
-    	$('#answer-feedback').show();*/
-
-    // LOAD NEXT QUESTION
-    /*	currentQuestion++;
-    	event.preventDefault();
-    	$('#next-question').hide();
-    	$('#answer-feedback').hide();
-    	$('#final-answer-button').show();
-    	displayQuestion(currentQuestion);*/
 }
 
-
-
-// *********************************
-
-// Step 4: #question-page section populates with next question.
-
-
 // SECTION TWO: Triggers go here
-$(document).ready(function() {
+$(document).ready(function () {
     //when the page loads
     $('#question-page').hide();
     $('#end-page').hide();
@@ -189,7 +137,7 @@ $(document).ready(function() {
     $('#start-page').show();
 
     //get started button trigger
-    $("#get-started").click(function() {
+    $("#get-started").click(function (event) {
         event.preventDefault();
         $('#start-page').hide();
         $('#end-page').hide();
@@ -200,7 +148,7 @@ $(document).ready(function() {
     });
 
     // final answer button trigger
-    $('#final-answer-button').click(function() {
+    $('#final-answer-button').click(function (event) {
         // prevent page refresh
         event.preventDefault();
 
@@ -210,16 +158,7 @@ $(document).ready(function() {
         // show next-question-button
         $('#next-question').show();
 
-        // gradeResponse(user input)
-        // Step 3: When user selects a response and clicks "That's my final answer!" button, #answer-feedback displays...
-
-        // [To determine if response is correct, compare the user-input value to the value of questionCorrectChoice]
-
-        // compare userInput to questionsArray[currentQuestion].questionCorrectChoice
-        // put the selected value for radio button into a variable
-        //var userInput = document.querySelector('input[name="option"]:checked').value;
-		
-		var userInput = $('input[name="option"]:checked').val();
+        var userInput = $('input[name="option"]:checked').val();
         totalQuestionsAnswered++;
         // compare userInput to value of questionsArray[currentQuestion].questionCorrectChoice
         if (userInput == questionsArray[currentQuestion].questionCorrectChoice) { //computer cannot read questionCorrectChoice? Why?
@@ -235,7 +174,7 @@ $(document).ready(function() {
         // display updated scorecard
         $("#scorecard").text("Current score: " + totalQuestionsCorrect + " correct out of " + totalQuestionsAnswered + " answered so far");
 
-         // on last question, handle final question
+        // on last question, handle final question
         if (currentQuestion + 1 == questionsArray.length) {
             $('#next-question').hide();
             $('#answer-feedback').hide();
@@ -246,17 +185,17 @@ $(document).ready(function() {
 
 
     // next-question button trigger
-    $("#next-question").click(function() {
+    $("#next-question").click(function (event) {
         currentQuestion++;
         event.preventDefault();
         $('#next-question').hide();
         $('#answer-feedback').hide();
         $('#final-answer-button').show();
-        displayQuestion(currentQuestion);       
+        displayQuestion(currentQuestion);
     });
 
     //show results button trigger
-    $("#show-results").click(function() {
+    $("#show-results").click(function (event) {
         event.preventDefault();
         $('#question-page').hide();
         $('#start-page').hide();
@@ -265,7 +204,7 @@ $(document).ready(function() {
     });
 
     //play again button trigger
-    $("#play-again").click(function() {
+    $("#play-again").click(function () {
         location.reload();
     });
 });
@@ -274,10 +213,5 @@ $(document).ready(function() {
 // TO DO: Make all questions "required"
 // TO DO: Optimize for mobile
 // TO DO: Italicize "non" in French flag question feedback
-// TO DO: Center all buttons
 // TO DO: Fix FOUC-like stuff when page first loads
 // TO DO: Fix button names (all should end in -button)
-// TO DO: There is a problem with "play again" functionality--start page loads, first question loads, breaks on first answer
-// ... it jumps ahead to the end page and shows a final score of 0 out of 0
-
-// TO DO: Does not include last question in final calculated score.
